@@ -168,6 +168,7 @@ function updateMovies() {
   allMovies = filterByStatus(allMovies);
   allMovies = filterByGenre(allMovies);
   allMovies = searchMovies(allMovies);
+  allMovies = sortMovies(allMovies);
 
   resultsCount.textContent = `${allMovies.length} movies`;
 
@@ -205,6 +206,25 @@ function searchMovies(movies) {
   );
 }
 
+// Sort Filter Function
+function sortMovies(movies) {
+  const sortedMovies = [...movies];
+
+  if (state.sortBy === "default") {
+    return movies;
+  }
+
+  if (state.sortBy === "runtime") {
+    sortedMovies.sort((a, b) => a.runtime - b.runtime);
+  }
+
+  if (state.sortBy === "year") {
+    sortedMovies.sort((a, b) => a.year - b.year);
+  }
+
+  return sortedMovies;
+}
+
 // =================================================
 // Event Listeners
 // =================================================
@@ -225,7 +245,7 @@ searchInput.addEventListener("input", (e) => {
 
 sortSelect.addEventListener("change", (e) => {
   state.sortBy = e.target.value;
-  console.log(state.sortBy);
+  updateMovies();
 });
 
 // =================================================

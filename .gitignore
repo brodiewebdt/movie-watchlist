@@ -1,0 +1,11 @@
+
+.prettierignore
+meta/
+
+
+
+# Misc
+*.log
+*.pem
+.DS_Store
+Thumbs.db

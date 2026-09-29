@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Array Practice</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/script.js" defer></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <p class="eyebrow">JavaScript Practice Project</p>
+        <h1 id="page-title">Project Dashboard</h1>
+        <p id="page-description">
+          Manage and analyze the application data below.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="toolbar" aria-label="Data controls">
+        <div class="field">
+          <label for="search">Search</label>
+          <input type="search" id="search" placeholder="Search..." />
+        </div>
+
+        <div class="field">
+          <label for="filter">Filter</label>
+          <select id="filter">
+            <option value="all">All</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="sort">Sort</label>
+          <select id="sort">
+            <option value="default">Default</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="summary" id="summary" aria-label="Dashboard summary">
+        <!-- Summary cards rendered with JavaScript -->
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <h2>Results</h2>
+          <p id="results-count"></p>
+        </div>
+
+        <div class="card-grid" id="results" aria-live="polite">
+          <!-- Cards rendered with JavaScript -->
+        </div>
+
+        <p class="empty-state hidden" id="empty-state">
+          No matching records found.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

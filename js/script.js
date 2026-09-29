@@ -166,6 +166,8 @@ function updateMovies() {
   let allMovies = [...movies];
 
   allMovies = filterByStatus(allMovies);
+  allMovies = filterByGenre(allMovies);
+  allMovies = searchMovies(allMovies);
 
   resultsCount.textContent = `${allMovies.length} movies`;
 
@@ -189,23 +191,36 @@ function filterByStatus(movies) {
   return movies;
 }
 
+// Genres Filter Function
+function filterByGenre(movies) {
+  if (state.filterBy === "all") return movies;
+
+  return movies.filter((movie) => movie.genre.toLowerCase() === state.filterBy);
+}
+
+// Search Filter Function
+function searchMovies(movies) {
+  return movies.filter((movie) =>
+    movie.title.toLowerCase().includes(state.searchTerm.toLowerCase()),
+  );
+}
+
 // =================================================
 // Event Listeners
 // =================================================
 statusForm.addEventListener("change", (e) => {
   state.currentStatus = e.target.dataset.watched;
-  console.log(state.currentStatus);
   updateMovies();
 });
 
 filterSelect.addEventListener("change", (e) => {
   state.filterBy = e.target.value;
-  console.log(state.filterBy);
+  updateMovies();
 });
 
 searchInput.addEventListener("input", (e) => {
   state.searchTerm = e.target.value;
-  console.log(state.searchTerm);
+  updateMovies();
 });
 
 sortSelect.addEventListener("change", (e) => {

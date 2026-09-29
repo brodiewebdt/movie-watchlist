@@ -176,6 +176,13 @@ button:hover {
   color: var(--muted);
 }
 
+.results-count {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: 1fr;

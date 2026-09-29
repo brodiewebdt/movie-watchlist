@@ -9,6 +9,7 @@ const searchInput = document.querySelector("#search");
 const filterSelect = document.querySelector("#filter");
 const sortSelect = document.querySelector("#sort");
 const statusForm = document.querySelector("#status-form");
+const resultsCount = document.querySelector("#results-count");
 
 // =================================================
 // State
@@ -30,8 +31,6 @@ function createFilterSelectOptions() {
   allOption.textContent = "All";
   filterSelect.appendChild(allOption);
   const uniqueGenres = [...new Set(movies.map((movie) => movie.genre))];
-
-  console.log(uniqueGenres);
 
   uniqueGenres.forEach((genre) => {
     const option = document.createElement("option");
@@ -160,11 +159,43 @@ function renderCardList(movies) {
 }
 
 // =================================================
+// Filtering and Sorting
+// =================================================
+// Group Filter Function
+function updateMovies() {
+  let allMovies = [...movies];
+
+  allMovies = filterByStatus(allMovies);
+
+  resultsCount.textContent = `${allMovies.length} movies`;
+
+  renderCardList(allMovies);
+}
+
+// Status Filter Function
+function filterByStatus(movies) {
+  if (state.currentStatus === "all") return movies;
+
+  return movies.filter((movie) => {
+    if (state.currentStatus === "watched") {
+      return movie.watched === true;
+    }
+
+    if (state.currentStatus === "unwatched") {
+      return movie.watched === false;
+    }
+  });
+
+  return movies;
+}
+
+// =================================================
 // Event Listeners
 // =================================================
 statusForm.addEventListener("change", (e) => {
   state.currentStatus = e.target.dataset.watched;
   console.log(state.currentStatus);
+  updateMovies();
 });
 
 filterSelect.addEventListener("change", (e) => {
@@ -188,9 +219,9 @@ sortSelect.addEventListener("change", (e) => {
 function init() {
   createFilterSelectOptions();
   createSortSelectOptions();
-  renderCardList(movies);
-
   createWatchStatusForm();
+  renderCardList(movies);
+  resultsCount.textContent = `${movies.length} movies`;
 }
 
 init();

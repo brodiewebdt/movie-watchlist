@@ -8,6 +8,7 @@ const emptyState = document.querySelector("#empty-state");
 const searchInput = document.querySelector("#search");
 const filterSelect = document.querySelector("#filter");
 const sortSelect = document.querySelector("#sort");
+const statusForm = document.querySelector("#status-form");
 
 // =================================================
 // State
@@ -42,7 +43,7 @@ function createFilterSelectOptions() {
 }
 
 // =================================================
-// Sort Select Options
+// Populate Sort Select Options
 // =================================================
 function createSortSelectOptions() {
   const defaultOption = document.createElement("option");
@@ -59,6 +60,49 @@ function createSortSelectOptions() {
   yearOption.value = "year";
   yearOption.textContent = "Release Year";
   sortSelect.appendChild(yearOption);
+}
+
+// =================================================
+// Watch Status Form Creation
+// =================================================
+function createWatchStatusForm() {
+  const allLabel = document.createElement("label");
+  allLabel.htmlFor = "all";
+  allLabel.textContent = "All";
+  const allInput = document.createElement("input");
+  allInput.type = "radio";
+  allInput.id = "all";
+  allInput.name = "watch-status";
+  allInput.value = "all";
+  allInput.dataset.watched = "all";
+  allInput.checked = true;
+
+  const watchedLabel = document.createElement("label");
+  watchedLabel.textContent = "Watched";
+  const watchedInput = document.createElement("input");
+  watchedInput.type = "radio";
+  watchedInput.id = "watched";
+  watchedInput.name = "watch-status";
+  watchedInput.value = "watched";
+  watchedInput.dataset.watched = "watched";
+
+  const unwatchedLabel = document.createElement("label");
+  unwatchedLabel.textContent = "Unwatched";
+  const unwatchedInput = document.createElement("input");
+  unwatchedInput.type = "radio";
+  unwatchedInput.id = "unwatched";
+  unwatchedInput.name = "watch-status";
+  unwatchedInput.value = "unwatched";
+  unwatchedInput.dataset.watched = "unwatched";
+
+  statusForm.append(
+    allLabel,
+    allInput,
+    watchedLabel,
+    watchedInput,
+    unwatchedLabel,
+    unwatchedInput,
+  );
 }
 
 // =================================================
@@ -118,6 +162,11 @@ function renderCardList(movies) {
 // =================================================
 // Event Listeners
 // =================================================
+statusForm.addEventListener("change", (e) => {
+  state.currentStatus = e.target.dataset.watched;
+  console.log(state.currentStatus);
+});
+
 filterSelect.addEventListener("change", (e) => {
   state.filterBy = e.target.value;
   console.log(state.filterBy);
@@ -140,6 +189,8 @@ function init() {
   createFilterSelectOptions();
   createSortSelectOptions();
   renderCardList(movies);
+
+  createWatchStatusForm();
 }
 
 init();

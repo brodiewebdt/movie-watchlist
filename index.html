@@ -20,7 +20,7 @@
     </header>
 
     <main class="container">
-      <section class="toolbar" aria-label="Data controls">
+      <section id="toolbar" class="toolbar" aria-label="Data controls">
         <div class="field">
           <label for="search">Search</label>
           <input type="search" id="search" placeholder="Search..." />
@@ -34,6 +34,11 @@
         <div class="field">
           <label for="sort">Sort</label>
           <select id="sort"></select>
+        </div>
+
+        <div class="field">
+          <h2 class="status-title">Viewing Status</h2>
+          <form id="status-form" class="status-form"></form>
         </div>
       </section>
 

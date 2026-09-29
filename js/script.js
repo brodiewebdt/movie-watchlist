@@ -226,6 +226,41 @@ function sortMovies(movies) {
 }
 
 // =================================================
+// Calculate Summary
+// =================================================
+function calculateSummary(movies) {
+  const totalMovies = movies.length;
+  const watchedMovies = movies.filter((movie) => movie.watched).length;
+  const unwatchedMovies = totalMovies - watchedMovies;
+  const watchedRuntime = movies
+    .filter((movie) => movie.watched)
+    .reduce((total, movie) => total + movie.runtime, 0);
+
+  return {
+    totalMovies,
+    watchedMovies,
+    unwatchedMovies,
+    watchedRuntime,
+  };
+}
+
+function displaySummary(summary) {
+  const summaryGrid = document.querySelector(".summary");
+  summaryGrid.innerHTML = `
+  <div class="summary-card"><p>Total Movies:</p> <span>${summary.totalMovies}</span>
+  </div>
+  <div class="summary-card"><p>Watched Movies:</p> <span>${summary.watchedMovies}</span>
+  </div>
+  <div class="summary-card">
+  <p>Unwatched Movies:</p> <span>${summary.unwatchedMovies}</span>
+  </div>
+  <div class="summary-card">
+   <p>Total Runtime of Watched Movies:</p> <span>${summary.watchedRuntime} mins</span>
+  </div>  
+  `;
+}
+
+// =================================================
 // Event Listeners
 // =================================================
 statusForm.addEventListener("change", (e) => {
@@ -257,6 +292,8 @@ function init() {
   createWatchStatusForm();
   renderCardList(movies);
   resultsCount.textContent = `${movies.length} movies`;
+  const summary = calculateSummary(movies);
+  displaySummary(summary);
 }
 
 init();

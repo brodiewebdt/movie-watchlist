@@ -5,6 +5,20 @@ import { movies } from "../data.js";
 // =================================================
 const cardGrid = document.querySelector("#results");
 const emptyState = document.querySelector("#empty-state");
+const searchInput = document.querySelector("#search");
+const filterSelect = document.querySelector("#filter");
+const sortSelect = document.querySelector("#sort");
+
+// =================================================
+// State
+// =================================================
+const state = {
+  movies,
+  searchTerm: "",
+  filterBy: "all",
+  sortBy: "default",
+  currentStatus: "all",
+};
 
 // =================================================
 // Card Creation
@@ -59,6 +73,24 @@ function renderCardList(movies) {
     cardGrid.append(card);
   });
 }
+
+// =================================================
+// Event Listeners
+// =================================================
+filterSelect.addEventListener("change", (e) => {
+  state.filterBy = e.target.value;
+  console.log(state.filterBy);
+});
+
+searchInput.addEventListener("input", (e) => {
+  state.searchTerm = e.target.value;
+  console.log(state.searchTerm);
+});
+
+sortSelect.addEventListener("change", (e) => {
+  state.sortBy = e.target.value;
+  console.log(state.sortBy);
+});
 
 // =================================================
 // Initialization

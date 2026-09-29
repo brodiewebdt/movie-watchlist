@@ -107,7 +107,6 @@ input,
 select {
   width: 100%;
   padding-inline: 0.75rem;
-  color: inherit;
   background: white;
   border: 1px solid var(--border);
 }

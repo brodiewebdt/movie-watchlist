@@ -21,6 +21,47 @@ const state = {
 };
 
 // =================================================
+// Populate Filter Select Options
+// =================================================
+function createFilterSelectOptions() {
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = "All";
+  filterSelect.appendChild(allOption);
+  const uniqueGenres = [...new Set(movies.map((movie) => movie.genre))];
+
+  console.log(uniqueGenres);
+
+  uniqueGenres.forEach((genre) => {
+    const option = document.createElement("option");
+    option.value = genre.toLowerCase();
+    option.textContent = genre;
+
+    filterSelect.appendChild(option);
+  });
+}
+
+// =================================================
+// Sort Select Options
+// =================================================
+function createSortSelectOptions() {
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "default";
+  defaultOption.textContent = "Default";
+  sortSelect.appendChild(defaultOption);
+
+  const runtimeOption = document.createElement("option");
+  runtimeOption.value = "runtime";
+  runtimeOption.textContent = "Runtime";
+  sortSelect.appendChild(runtimeOption);
+
+  const yearOption = document.createElement("option");
+  yearOption.value = "year";
+  yearOption.textContent = "Release Year";
+  sortSelect.appendChild(yearOption);
+}
+
+// =================================================
 // Card Creation
 // =================================================
 function createCardDetail(labelText, valueText) {
@@ -96,6 +137,8 @@ sortSelect.addEventListener("change", (e) => {
 // Initialization
 // =================================================
 function init() {
+  createFilterSelectOptions();
+  createSortSelectOptions();
   renderCardList(movies);
 }
 

@@ -11,8 +11,8 @@
   <body>
     <header class="site-header">
       <div class="container">
-        <p class="eyebrow">Movie Watchlist</p>
-        <h1 id="page-title">Project Dashboard</h1>
+        <p class="eyebrow">Project Dashboard</p>
+        <h1 id="page-title">Movie Watchlist</h1>
         <p id="page-description">
           Manage and analyze the application data below.
         </p>
@@ -22,8 +22,8 @@
     <main class="container">
       <section id="toolbar" class="toolbar" aria-label="Data controls">
         <div class="field">
-          <label for="search">Search</label>
-          <input type="search" id="search" placeholder="Search..." />
+          <label for="search">Search movies</label>
+          <input type="search" id="search" placeholder="Search movies..." />
         </div>
 
         <div class="field">
@@ -37,8 +37,12 @@
         </div>
 
         <div class="field">
-          <h2 class="status-title">Viewing Status</h2>
-          <form id="status-form" class="status-form"></form>
+          <h2 id="status-form-title" class="status-title">Viewing Status</h2>
+          <form
+            id="status-form"
+            class="status-form"
+            aria-labelledby="status-form-title"
+          ></form>
         </div>
       </section>
 
@@ -57,7 +61,7 @@
         </div>
 
         <p class="empty-state hidden" id="empty-state">
-          No matching records found.
+          No movies match your current filters.
         </p>
       </section>
     </main>

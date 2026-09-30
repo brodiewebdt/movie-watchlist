@@ -28,7 +28,7 @@ const state = {
 function createFilterSelectOptions() {
   const allOption = document.createElement("option");
   allOption.value = "all";
-  allOption.textContent = "All";
+  allOption.textContent = "All genres";
   filterSelect.appendChild(allOption);
   const uniqueGenres = [...new Set(movies.map((movie) => movie.genre))];
 
@@ -47,7 +47,7 @@ function createFilterSelectOptions() {
 function createSortSelectOptions() {
   const defaultOption = document.createElement("option");
   defaultOption.value = "default";
-  defaultOption.textContent = "Default";
+  defaultOption.textContent = "Default sort";
   sortSelect.appendChild(defaultOption);
 
   const runtimeOption = document.createElement("option");
@@ -77,6 +77,7 @@ function createWatchStatusForm() {
   allInput.checked = true;
 
   const watchedLabel = document.createElement("label");
+  watchedLabel.htmlFor = "watched";
   watchedLabel.textContent = "Watched";
   const watchedInput = document.createElement("input");
   watchedInput.type = "radio";
@@ -86,6 +87,7 @@ function createWatchStatusForm() {
   watchedInput.dataset.watched = "watched";
 
   const unwatchedLabel = document.createElement("label");
+  unwatchedLabel.htmlFor = "unwatched";
   unwatchedLabel.textContent = "Unwatched";
   const unwatchedInput = document.createElement("input");
   unwatchedInput.type = "radio";

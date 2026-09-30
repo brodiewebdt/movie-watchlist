@@ -46,6 +46,13 @@ select {
   font: inherit;
 }
 
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .container {
   width: min(1100px, calc(100% - 2rem));
   margin-inline: auto;
@@ -90,6 +97,7 @@ p {
 .field {
   display: grid;
   gap: 0.35rem;
+  min-width: 0;
 }
 
 .field label,
@@ -119,7 +127,13 @@ input[type="radio"] {
   width: auto;
 }
 
+.status-title,
 .status-form {
+  min-width: 0;
+}
+
+.status-form {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem;
